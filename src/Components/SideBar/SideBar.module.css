@@ -1,0 +1,11 @@
+.sideBar {
+  background-image: url("../../../public/assets/images/bg-sidebar-desktop.svg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  border-radius: 1rem;
+  padding: 3.2rem 4rem;
+  list-style: none;
+  /* display: flex; */
+  height: 56.8rem;
+  width: 20rem;
+}

@@ -1,5 +1,16 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 62.5%;
+}
+
 .app {
-  margin: 10.5rem 25rem;
+  margin: 0rem 25rem;
   display: flex;
+  padding: 1.6rem;
   border-radius: 5rem;
 }
