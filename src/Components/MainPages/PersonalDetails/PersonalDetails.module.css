@@ -1,0 +1,47 @@
+.personalDetails {
+  padding-top: 3.2rem;
+  padding-left: 8rem;
+  display: flex;
+  /* justify-content: center; */
+  /* align-items: center; */
+  flex-direction: column;
+  gap: 1.1rem;
+}
+
+.heading {
+  color: var(--color-marine-blue);
+}
+
+.subHeading {
+  color: var(--color-cool-gray);
+}
+
+.details {
+  display: flex;
+  flex-direction: column;
+  gap: 2.4rem;
+  padding-top: 2.9rem;
+}
+
+.det {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+
+.detHeading {
+  color: var(--color-marine-blue);
+}
+
+.input {
+  border: 1px solid var(--color-cool-gray);
+  padding: 1.6rem;
+  border-radius: 0.8rem;
+  font-size: 1.6rem;
+  font-family: "Ubuntu", sans-serif;
+}
+
+.input::placeholder {
+  font-weight: 500;
+  color: var(--color-cool-gray);
+}

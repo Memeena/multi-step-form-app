@@ -9,6 +9,7 @@
 html {
   font-size: 62.5%;
   font-family: "Ubuntu", sans-serif;
+  background-color: #f2f2f2;
 }
 
 :root {
@@ -25,12 +26,49 @@ html {
   --color-white: hsl(0, 0%, 100%);
 }
 
-p {
+.p-small {
+  font-size: 1.2rem;
+}
+
+.p-medium {
+  font-size: 1.4rem;
+}
+
+.p-large {
   font-size: 1.6rem;
 }
+
+.heading-small {
+  font-size: 2rem;
+}
+
+.headingMedium {
+  font-size: 3.2rem;
+}
+
+.heading-large {
+  font-size: 3.4rem;
+}
 .app {
-  margin: 0rem 25rem;
-  display: flex;
+  margin: 10rem;
+  display: grid;
+  grid-template-columns: max-content 1fr min-content;
+  grid-template-rows: 1fr max-content;
+  /* align-items: center; */
+  justify-content: center;
+  /* gap: 5rem; */
   padding: 1.6rem;
-  border-radius: 5rem;
+  border-radius: 1.5rem;
+  background-color: white;
+}
+
+.mainPage {
+  grid-row: 1/2;
+  grid-column: 2/-1;
+}
+
+.button {
+  grid-row: 2/-1;
+  grid-column: 3/-1;
+  
 }
