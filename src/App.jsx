@@ -8,10 +8,10 @@ function App() {
       <SideBar className="sideBar" />
       <div className="mainPage">
         <PersonalDetails />
-      </div>
-      <div className="button">
-        <button className="btn-back">Go back</button>
-        <button className="btn-next">Next Step</button>
+        <div className="button">
+          <button className="btn-back">Go Back</button>
+          <button className="btn-next">Next Step</button>
+        </div>
       </div>
     </div>
   );
