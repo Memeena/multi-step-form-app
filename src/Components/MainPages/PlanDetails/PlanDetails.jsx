@@ -1,13 +1,14 @@
 import styles from "./PlanDetails.module.css";
 import PlanDetailsList from "./PlanDetailsList";
+import Header from "../../Header/Header";
 
 export default function PlanDetails() {
   return (
     <div className={styles.planDetails}>
-      <h1 className={styles.heading}>Select your plan</h1>
-      <p className={styles.sub}>
-        You have the option of monthly or yearly billing.
-      </p>
+      <Header
+        heading={"Select your plan"}
+        subHeading={"You have the option of monthly or yearly billing."}
+      />
 
       <ul className={styles.planList}>
         <PlanDetailsList

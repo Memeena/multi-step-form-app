@@ -1,0 +1,10 @@
+.heading {
+  color: var(--color-marine-blue);
+  /* font-size: 3.2rem; */
+}
+
+.subHeading {
+  /* font-size: 1.6rem; */
+  margin-top: 0.9rem;
+  color: var(--color-cool-gray);
+}

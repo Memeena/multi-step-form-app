@@ -1,13 +1,11 @@
 import styles from "./PersonalDetails.module.css";
 import "../../../index.css";
+import Header from "../../Header/Header";
 
 export default function PersonalDetails() {
   return (
     <div className={styles.personalDetails}>
-      <h1 className={`${styles.heading} ${"headingMedium"}`}>Personal info</h1>
-      <p className={`${styles.subHeading} ${"p-large"}`}>
-        Please provide your name, email address, and phone number.
-      </p>
+      <Header heading={'Personal Info'} subHeading={'Please provide your name, email address, and phone number.'}/>     
 
       <div className={styles.details}>
         <div className={`${styles.det} ${"p-medium"}`}>
