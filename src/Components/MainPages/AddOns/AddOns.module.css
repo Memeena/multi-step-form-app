@@ -1,0 +1,50 @@
+.addOnsList {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 1.6rem;
+  margin-top: 4rem;
+}
+
+.addOnsItem {
+  display: grid;
+  grid-template-columns: min-content 1fr max-content;
+  align-items: center;
+  gap: 2.4rem;
+  border: 1px solid var(--color-border);
+  border-radius: 0.5rem;
+  padding: 3rem 2.4rem;
+  width: 45rem;
+}
+
+input[type="checkbox"] {
+  width: 2rem;
+  height: 2rem;
+  border: 1px solid var(--color-cool-gray);
+  background-color: white;
+}
+
+.addOnsDetail {
+  display: flex;
+  flex-direction: column;
+  gap: 0.7rem;
+}
+
+.name {
+  font-size: 1.6rem;
+  color: var(--color-marine-blue);
+  font-weight: 500;
+}
+
+.subName,
+.price {
+  font-size: 1.4rem;
+}
+
+.subName {
+  color: var(--color-cool-gray);
+}
+
+.price {
+  color: var(--color-purplish-blue);
+}

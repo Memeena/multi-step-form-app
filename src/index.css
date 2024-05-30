@@ -1,15 +1,9 @@
-@import url("https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,400;0,500;0,700;&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;500;700&display=swap");
 
 * {
   padding: 0;
   margin: 0;
   box-sizing: border-box;
-}
-
-html {
-  font-size: 62.5%;
-  font-family: "Ubuntu", sans-serif;
-  background-color: #f2f2f2;
 }
 
 :root {
@@ -27,6 +21,10 @@ html {
   --color-border: hsl(231, 23%, 87%);
 }
 
+html {
+  font-size: 62.5%;
+  font-family: "Ubuntu", monospace;
+}
 .p-small {
   font-size: 1.2rem;
 }
@@ -51,13 +49,25 @@ html {
   font-size: 3.4rem;
 }
 .app {
-  margin: 10rem 33rem;
-  display: flex;
+  /* width: 94rem; */
+  /* margin: 10rem 42rem; */
+  /* margin: 10rem; */
+  /* padding: 0 10r; */
   /* grid-template-columns: max-content 1fr; */
   /* grid-template-rows: 1fr max-content; */
-  /* align-items: center; */
-  /* justify-content: center; */
+
   /* gap: 5rem; */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  background-color: var(--color-border);
+}
+
+.main {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   padding: 1.6rem;
   border-radius: 1.5rem;
   background-color: white;
@@ -66,6 +76,7 @@ html {
 .mainPage {
   padding-top: 3.2rem;
   padding-left: 8rem;
+  padding-right: 8rem;
   display: flex;
   flex-direction: column;
   gap: 9rem;

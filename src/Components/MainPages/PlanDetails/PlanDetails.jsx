@@ -2,7 +2,12 @@ import styles from "./PlanDetails.module.css";
 import PlanDetailsList from "./PlanDetailsList";
 import Header from "../../Header/Header";
 
-export default function PlanDetails() {
+export default function PlanDetails({ dispatch, plan }) {
+  console.log(plan);
+  function handlePlanChange() {
+    console.log("change plan clicked");
+    dispatch({ type: "changePlan" });
+  }
   return (
     <div className={styles.planDetails}>
       <Header
@@ -11,28 +16,20 @@ export default function PlanDetails() {
       />
 
       <ul className={styles.planList}>
-        <PlanDetailsList
-          img={`../../../../public/assets/images/icon-arcade.svg`}
-          planName="Arcade"
-          amount={9}
-        />
-
-        <PlanDetailsList
-          img={`../../../../public/assets/images/icon-advanced.svg`}
-          planName="Advanced"
-          amount={12}
-        />
-        <PlanDetailsList
-          img={`../../../../public/assets/images/icon-pro.svg`}
-          planName="Pro"
-          amount={15}
-        />
+        {plan.type.map((item) => (
+          <PlanDetailsList
+            key={item.name}
+            img={`../../../../public/assets/images/${item.img}`}
+            planName={item.name}
+            amount={item.price}
+          />
+        ))}
       </ul>
 
       <div className={styles.plan}>
         <p>Monthly</p>
-        <div className={styles.planbtn}>
-          <div className={styles.planSelect}></div>
+        <div className={styles.planbtn} onClick={handlePlanChange}>
+          <div className={styles.planSelect} data-mode={plan.plan}></div>
         </div>
         <p>Yearly</p>
       </div>
