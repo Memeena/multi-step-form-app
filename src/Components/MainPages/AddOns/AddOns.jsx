@@ -2,7 +2,8 @@ import Header from "../../Header/Header";
 import styles from "./AddOns.module.css";
 import AddOnsList from "./AddOnsList";
 
-export default function AddOns() {
+export default function AddOns({ plan }) {
+  console.log(plan.addOns);
   return (
     <div className={styles.addOns}>
       <Header
@@ -10,21 +11,14 @@ export default function AddOns() {
         subHeading={"Add-ons help enhance your gaming experience."}
       />
       <ul className={styles.addOnsList}>
-        <AddOnsList
-          name={"Online Services"}
-          subName={"Access to multiplayer games"}
-          price={1}
-        />
-        <AddOnsList
-          name={"Larger Storage"}
-          subName={"Extra 1TB of cloud save"}
-          price={2}
-        />
-        <AddOnsList
-          name={"Customizable Profile"}
-          subName={"Custom theme on your profile"}
-          price={2}
-        />
+        {plan.addOns.map((item) => (
+          <AddOnsList
+            name={item.name}
+            subName={item.subName}
+            price={item.price}
+            key={item.name}
+          />
+        ))}
       </ul>
     </div>
   );

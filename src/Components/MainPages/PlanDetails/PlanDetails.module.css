@@ -34,6 +34,7 @@
   width: 13.8rem;
   height: 16rem;
   justify-content: space-between;
+  cursor: pointer;
   /* align-items: center; */
 }
 
@@ -71,6 +72,7 @@
   border-radius: 1rem;
   background-color: var(--color-marine-blue);
   position: relative;
+  cursor: pointer;
 }
 
 .planSelect {

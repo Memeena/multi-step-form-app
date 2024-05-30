@@ -8,8 +8,9 @@ import { useReducer } from "react";
 
 // console.log(data.data[0].plan);
 const initialState = {
-  plan: data.data[0],
+  plan: data.data[1],
 };
+
 function reducer(state, action) {
   switch (action.type) {
     case "changePlan":
@@ -31,8 +32,8 @@ function App() {
         <SideBar className="sideBar" />
         <div className="mainPage">
           {/* <PersonalDetails /> */}
-          <PlanDetails dispatch={dispatch} plan={plan} />
-          {/* <AddOns /> */}
+          {/* <PlanDetails dispatch={dispatch} plan={plan} /> */}
+          <AddOns plan={plan} />
           <div className="button">
             <button className="btn-back">Go Back</button>
             <button className="btn-next">Next Step</button>
