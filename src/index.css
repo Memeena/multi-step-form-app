@@ -90,23 +90,32 @@ html {
 }
 
 .btn-back,
-.btn-next {
+.btn-next,
+.btn-confirm {
   font-size: 1.6rem;
   font-family: "Ubuntu", sans-serif;
   font-weight: 600;
+  border: none;
+  outline: none;
 }
 .btn-back {
-  border: none;
   background: none;
-  outline: none;
   color: var(--color-cool-gray);
+}
+
+.btn-next,
+.btn-confirm {
+  color: var(--color-white);
+  border-radius: 0.8rem;
+  padding: 1.4rem 2.5rem;
 }
 
 .btn-next {
   background-color: var(--color-marine-blue);
-  color: var(--color-white);
-  border-radius: 0.8rem;
-  padding: 1.4rem 2.5rem;
+}
+
+.btn-confirm {
+  background-color: var(--color-purplish-blue);
 }
 
 :global(.active) {

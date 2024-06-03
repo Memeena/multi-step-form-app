@@ -5,6 +5,8 @@ import AddOns from "./Components/MainPages/AddOns/AddOns";
 import "./index.css";
 import data from "./data/data.json";
 import { useReducer } from "react";
+import Summary from "./Components/MainPages/Summary/Summary";
+import ThankYou from "./Components/MainPages/ThankYou/ThankYou";
 
 // console.log(data.data[0].plan);
 const initialState = {
@@ -13,6 +15,8 @@ const initialState = {
   selectedPlanName: "",
   selectedPlanAmount: 0,
   selectedAddOns: [],
+  currStep: 1,
+  totalAmt: 0,
 };
 
 function reducer(state, action) {
@@ -33,13 +37,48 @@ function reducer(state, action) {
       };
 
     case "selectedAddOns":
-      console.log(action.payload);
       return {
         ...state,
         selectedAddOns: [
           ...state.selectedAddOns,
           { name: action.payload.name, price: action.payload.price },
         ],
+      };
+
+    case "backStep":
+      return {
+        ...state,
+        currStep:
+          state.currStep > 1 && state.currStep <= 4
+            ? state.currStep--
+            : state.currStep,
+      };
+
+    case "nextStep":
+      return {
+        ...state,
+        currStep: state.currStep < 4 ? state.currStep++ : state.currStep,
+        // totalAmt:
+        //   state.currStep === 3
+        //     ? state.selectedPlanAmount +
+        //       state.selectedAddOns.price.reduce((acc, curr) => acc + curr, 0)
+        //     : state.totalAmt,
+      };
+
+    case "selectStep":
+      return {
+        ...state,
+        currStep: action.payload,
+      };
+
+    case "changePlanName":
+      return {
+        ...state,
+        currStep: 2,
+        selectedPlan: "",
+        selectedPlanName: "",
+        selectedPlanAmount: 0,
+        selectedAddOns: [],
       };
 
     default:
@@ -55,23 +94,58 @@ function App() {
       selectedPlanName,
       selectedPlanAmount,
       selectedAddOns,
+      selectedStep,
+      currStep,
+      totalAmt,
     },
     dispatch,
   ] = useReducer(reducer, initialState);
 
-  console.log(selectedAddOns);
+  console.log(selectedAddOns, currStep, totalAmt);
 
   return (
     <div className="app">
       <div className="main">
-        <SideBar className="sideBar" />
+        <SideBar className="sideBar" dispatch={dispatch} />
         <div className="mainPage">
-          {/* <PersonalDetails /> */}
-          {/* <PlanDetails dispatch={dispatch} plan={plan} /> */}
-          <AddOns plan={plan} />
+          {currStep === 1 && <PersonalDetails />}
+          {currStep === 2 && <PlanDetails dispatch={dispatch} plan={plan} />}
+          {currStep === 3 && <AddOns plan={plan} dispatch={dispatch} />}
+          {currStep === 4 && (
+            <Summary
+              selectedPlan={selectedPlan}
+              selectedPlanName={selectedPlanName}
+              selectedPlanAmount={selectedPlanAmount}
+              selectedAddOns={selectedAddOns}
+              dispatch={dispatch}
+            />
+          )}
+          {currStep > 4 && <ThankYou />}
           <div className="button">
-            <button className="btn-back">Go Back</button>
-            <button className="btn-next">Next Step</button>
+            {currStep > 1 && currStep <= 4 && (
+              <button
+                className="btn-back"
+                onClick={() => dispatch({ type: "backStep" })}
+              >
+                Go Back
+              </button>
+            )}
+            {currStep === 4 && (
+              <button
+                className="btn-confirm"
+                onClick={() => dispatch({ type: "confirmStep" })}
+              >
+                Confirm
+              </button>
+            )}
+            {currStep !== 4 && (
+              <button
+                className="btn-next"
+                onClick={() => dispatch({ type: "nextStep" })}
+              >
+                Next Step
+              </button>
+            )}
           </div>
         </div>
       </div>

@@ -4,6 +4,9 @@ export default function AddOnsList({ name, subName, price, dispatch }) {
   function handleChange() {
     console.log("checkbox clicked");
     console.log(name, price);
+    // dispatch({ type: "selectedPlan", payload: { planName, amount } });
+    // dispatch({ type: "selectedAddOns" });
+
     dispatch({ type: "selectedAddOns", payload: { name, price } });
   }
 
@@ -12,7 +15,7 @@ export default function AddOnsList({ name, subName, price, dispatch }) {
       <input
         type="checkbox"
         className={styles.inputChkBox}
-        onChange={handleChange}
+        onClick={handleChange}
       ></input>
       <div className={styles.addOnsDetail}>
         <label className={styles.name} htmlFor="">
