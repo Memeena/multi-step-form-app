@@ -10,13 +10,15 @@ import ThankYou from "./Components/MainPages/ThankYou/ThankYou";
 
 // console.log(data.data[0].plan);
 const initialState = {
-  plan: data.data[1],
+  plan: data.data[0],
   selectedPlan: "",
   selectedPlanName: "",
   selectedPlanAmount: 0,
   selectedAddOns: [],
   currStep: 1,
   totalAmt: 0,
+  status: "ready", //"plan selected"/"addOns selected"/"finish",
+  errorMsg: "",
 };
 
 function reducer(state, action) {
@@ -34,6 +36,7 @@ function reducer(state, action) {
         selectedPlan: state.plan.plan,
         selectedPlanName: action.payload.planName,
         selectedPlanAmount: action.payload.amount,
+        status: "plan selected",
       };
 
     case "selectedAddOns":
@@ -43,6 +46,7 @@ function reducer(state, action) {
           ...state.selectedAddOns,
           { name: action.payload.name, price: action.payload.price },
         ],
+        status: "addOns selected",
       };
 
     case "backStep":
@@ -55,6 +59,25 @@ function reducer(state, action) {
       };
 
     case "nextStep":
+      console.log("inside next step");
+      console.log(state.status, state.currStep);
+      // if (state.currStep === 2 && !state.selectedPlan) {
+      //   console.log("inside error");
+      //   return {
+      //     ...state,
+      //     errorMsg: "Please select a Plan..",
+      //     status: "error",
+      //   };
+      // }
+      // if (
+      //   state.currStep === 3 &&
+      //   (state.status !== "plan selected" || state.status === "addOns selected")
+      // )
+      //   return {
+      //     ...state,
+      //     errorMsg: "Please select Addons..",
+      //     status: "error",
+      //   };
       return {
         ...state,
         currStep: state.currStep < 4 ? state.currStep++ : state.currStep,
@@ -97,11 +120,13 @@ function App() {
       selectedStep,
       currStep,
       totalAmt,
+      status,
+      errorMsg,
     },
     dispatch,
   ] = useReducer(reducer, initialState);
 
-  console.log(selectedAddOns, currStep, totalAmt);
+  console.log(currStep, status, errorMsg);
 
   return (
     <div className="app">
@@ -110,8 +135,10 @@ function App() {
         <div className="mainPage">
           {currStep === 1 && <PersonalDetails />}
           {currStep === 2 && <PlanDetails dispatch={dispatch} plan={plan} />}
-          {currStep === 3 && <AddOns plan={plan} dispatch={dispatch} />}
-          {currStep === 4 && (
+          {currStep === 3 && status === "plan selected" && (
+            <AddOns plan={plan} dispatch={dispatch} />
+          )}
+          {currStep === 4 && status === "addOns selected" && (
             <Summary
               selectedPlan={selectedPlan}
               selectedPlanName={selectedPlanName}
@@ -121,6 +148,7 @@ function App() {
             />
           )}
           {currStep > 4 && <ThankYou />}
+          {status === "error" && <p>{errorMsg}</p>}
           <div className="button">
             {currStep > 1 && currStep <= 4 && (
               <button
