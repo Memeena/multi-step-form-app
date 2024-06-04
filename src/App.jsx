@@ -61,6 +61,15 @@ function reducer(state, action) {
     case "nextStep":
       console.log("inside next step");
       console.log(state.status, state.currStep);
+      if (state.currStep === 2 && !state.selectedPlanName) {
+        console.log("inside error");
+        return {
+          ...state,
+          currStep: state.currStep,
+          errorMsg: "Please select a plan",
+          status: "error",
+        };
+      }
       // if (state.currStep === 2 && !state.selectedPlan) {
       //   console.log("inside error");
       //   return {
@@ -78,15 +87,16 @@ function reducer(state, action) {
       //     errorMsg: "Please select Addons..",
       //     status: "error",
       //   };
-      return {
-        ...state,
-        currStep: state.currStep < 4 ? state.currStep++ : state.currStep,
-        // totalAmt:
-        //   state.currStep === 3
-        //     ? state.selectedPlanAmount +
-        //       state.selectedAddOns.price.reduce((acc, curr) => acc + curr, 0)
-        //     : state.totalAmt,
-      };
+      else
+        return {
+          ...state,
+          currStep: state.currStep < 4 ? state.currStep++ : state.currStep,
+          // totalAmt:
+          //   state.currStep === 3
+          //     ? state.selectedPlanAmount +
+          //       state.selectedAddOns.price.reduce((acc, curr) => acc + curr, 0)
+          //     : state.totalAmt,
+        };
 
     case "selectStep":
       return {
@@ -148,7 +158,8 @@ function App() {
             />
           )}
           {currStep > 4 && <ThankYou />}
-          {status === "error" && <p>{errorMsg}</p>}
+
+          {errorMsg && <p>{errorMsg}</p>}
           <div className="button">
             {currStep > 1 && currStep <= 4 && (
               <button
