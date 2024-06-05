@@ -5,15 +5,16 @@
 }
 
 .stepNumber {
-  padding: 0.5rem 1rem;
+  padding: 0.7rem 1rem;
   border-radius: 50%;
   /* background-color: var(--color-light-blue); */
   border: 1px solid var(--color-light-blue);
   font-size: 1.4rem;
-  color: var(--color-white);
+  /* color: var(--color-white); */
   height: 3.3rem;
   width: 3.3rem;
   text-align: center;
+  font-weight: bold;
 }
 
 .stepDetails {

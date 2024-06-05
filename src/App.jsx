@@ -51,6 +51,8 @@ function reducer(state, action) {
       //     ];
       return {
         ...state,
+        // status: "addOns selected",
+        errorMsg: "",
         selectedAddOns: state.selectedAddOns.some(
           (i) => i.name === action.payload.name
         )
@@ -59,7 +61,6 @@ function reducer(state, action) {
               ...state.selectedAddOns,
               { name: action.payload.name, price: action.payload.price },
             ],
-        // status: "addOns selected",
       };
 
     case "backStep":
@@ -76,7 +77,11 @@ function reducer(state, action) {
     case "nextStep":
       // console.log("inside next step");
       // console.log(state.status, state.currStep);
-      if (state.currStep === 2 && !state.selectedPlanName) {
+      if (
+        state.currStep === 2 &&
+        !state.selectedPlanName &&
+        state.status !== "plan selected"
+      ) {
         // console.log("inside error");
         return {
           ...state,
@@ -84,7 +89,11 @@ function reducer(state, action) {
           errorMsg: "Please select a plan",
           status: "error",
         };
-      } else if (state.currStep === 3 && !state.selectedAddOns.length) {
+      } else if (
+        state.currStep === 3 &&
+        !state.selectedAddOns.length
+        // state.status !== "plan selected"
+      ) {
         return {
           ...state,
           currStep: state.currStep,
@@ -95,6 +104,8 @@ function reducer(state, action) {
         return {
           ...state,
           currStep: state.currStep < 4 ? state.currStep++ : state.currStep,
+          errorMsg: "",
+
           // totalAmt:
           //   state.currStep === 3
           //     ? state.selectedPlanAmount +
@@ -131,7 +142,6 @@ function App() {
       selectedPlanName,
       selectedPlanAmount,
       selectedAddOns,
-      selectedStep,
       currStep,
       totalAmt,
       status,
@@ -140,12 +150,12 @@ function App() {
     dispatch,
   ] = useReducer(reducer, initialState);
 
-  console.log(selectedAddOns, currStep, status, errorMsg);
+  console.log(currStep, status, errorMsg);
 
   return (
     <div className="app">
       <div className="main">
-        <SideBar className="sideBar" dispatch={dispatch} />
+        <SideBar className="sideBar" dispatch={dispatch} currStep={currStep} />
         <div className="mainPage">
           {currStep === 1 && <PersonalDetails />}
           {currStep === 2 && <PlanDetails dispatch={dispatch} plan={plan} />}
