@@ -66,18 +66,7 @@ function reducer(state, action) {
       // console.log("inside back step");
       console.log(state.status, state.currStep);
       return {
-        ...state,
-
-        selectedPlan: state.currStep === 2 ? "" : state.selectedPlan,
-        selectedPlanName: state.currStep === 2 ? "" : state.selectedPlanName,
-        selectedPlanAmount: state.currStep === 2 ? 0 : state.selectedPlanAmount,
-        selectedAddOns: state.currStep === 3 ? [] : state.selectedAddOns,
-        status:
-          state.currStep === 3
-            ? "ready"
-            : state.currStep === 2
-            ? "ready"
-            : state.status,
+        ...initialState,
         currStep:
           state.currStep > 1 && state.currStep <= 4
             ? state.currStep--
@@ -95,25 +84,14 @@ function reducer(state, action) {
           errorMsg: "Please select a plan",
           status: "error",
         };
-      }
-      // if (state.currStep === 2 && !state.selectedPlan) {
-      //   console.log("inside error");
-      //   return {
-      //     ...state,
-      //     errorMsg: "Please select a Plan..",
-      //     status: "error",
-      //   };
-      // }
-      // if (
-      //   state.currStep === 3 &&
-      //   (state.status !== "plan selected" || state.status === "addOns selected")
-      // )
-      //   return {
-      //     ...state,
-      //     errorMsg: "Please select Addons..",
-      //     status: "error",
-      //   };
-      else
+      } else if (state.currStep === 3 && !state.selectedAddOns.length) {
+        return {
+          ...state,
+          currStep: state.currStep,
+          errorMsg: "Please select Addons..",
+          status: "error",
+        };
+      } else
         return {
           ...state,
           currStep: state.currStep < 4 ? state.currStep++ : state.currStep,
@@ -171,9 +149,7 @@ function App() {
         <div className="mainPage">
           {currStep === 1 && <PersonalDetails />}
           {currStep === 2 && <PlanDetails dispatch={dispatch} plan={plan} />}
-          {currStep === 3 && status === "plan selected" && (
-            <AddOns plan={plan} dispatch={dispatch} />
-          )}
+          {currStep === 3 && <AddOns plan={plan} dispatch={dispatch} />}
           {currStep === 4 && (
             <Summary
               selectedPlan={selectedPlan}
