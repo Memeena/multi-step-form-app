@@ -3,9 +3,9 @@ import PlanDetailsList from "./PlanDetailsList";
 import Header from "../../Header/Header";
 
 export default function PlanDetails({ dispatch, plan }) {
-  console.log(plan);
+  // console.log(plan);
   function handlePlanChange() {
-    console.log("change plan clicked");
+    // console.log("change plan clicked");
     dispatch({ type: "changePlan" });
   }
   return (

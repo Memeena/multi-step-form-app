@@ -4,7 +4,7 @@ import SideBar from "./Components/SideBar/SideBar";
 import AddOns from "./Components/MainPages/AddOns/AddOns";
 import "./index.css";
 import data from "./data/data.json";
-import { useReducer } from "react";
+import { act, useReducer } from "react";
 import Summary from "./Components/MainPages/Summary/Summary";
 import ThankYou from "./Components/MainPages/ThankYou/ThankYou";
 
@@ -30,28 +30,54 @@ function reducer(state, action) {
       };
 
     case "selectedPlan":
-      console.log(action.payload);
+      // console.log(action.payload);
       return {
         ...state,
         selectedPlan: state.plan.plan,
         selectedPlanName: action.payload.planName,
         selectedPlanAmount: action.payload.amount,
         status: "plan selected",
+        errorMsg: "",
       };
 
     case "selectedAddOns":
+      console.log("inside selected addons", state.selectedAddOns);
+      // const x = ;
+      // const newArr = x
+      //   ? state.selectedAddOns.filter((i) => i.name === action.payload.name)
+      //   : [
+      //       ...state.selectedAddOns,
+      //       { name: action.payload.name, price: action.payload.price },
+      //     ];
       return {
         ...state,
-        selectedAddOns: [
-          ...state.selectedAddOns,
-          { name: action.payload.name, price: action.payload.price },
-        ],
-        status: "addOns selected",
+        selectedAddOns: state.selectedAddOns.some(
+          (i) => i.name === action.payload.name
+        )
+          ? state.selectedAddOns.filter((i) => i.name !== action.payload.name)
+          : [
+              ...state.selectedAddOns,
+              { name: action.payload.name, price: action.payload.price },
+            ],
+        // status: "addOns selected",
       };
 
     case "backStep":
+      // console.log("inside back step");
+      console.log(state.status, state.currStep);
       return {
         ...state,
+
+        selectedPlan: state.currStep === 2 ? "" : state.selectedPlan,
+        selectedPlanName: state.currStep === 2 ? "" : state.selectedPlanName,
+        selectedPlanAmount: state.currStep === 2 ? 0 : state.selectedPlanAmount,
+        selectedAddOns: state.currStep === 3 ? [] : state.selectedAddOns,
+        status:
+          state.currStep === 3
+            ? "ready"
+            : state.currStep === 2
+            ? "ready"
+            : state.status,
         currStep:
           state.currStep > 1 && state.currStep <= 4
             ? state.currStep--
@@ -59,10 +85,10 @@ function reducer(state, action) {
       };
 
     case "nextStep":
-      console.log("inside next step");
-      console.log(state.status, state.currStep);
+      // console.log("inside next step");
+      // console.log(state.status, state.currStep);
       if (state.currStep === 2 && !state.selectedPlanName) {
-        console.log("inside error");
+        // console.log("inside error");
         return {
           ...state,
           currStep: state.currStep,
@@ -98,11 +124,11 @@ function reducer(state, action) {
           //     : state.totalAmt,
         };
 
-    case "selectStep":
-      return {
-        ...state,
-        currStep: action.payload,
-      };
+    // case "selectStep":
+    //   return {
+    //     ...state,
+    //     currStep: action.payload,
+    //   };
 
     case "changePlanName":
       return {
@@ -118,7 +144,7 @@ function reducer(state, action) {
       console.log("Unknown action");
   }
 }
-console.log(initialState);
+// console.log(initialState);
 function App() {
   const [
     {
@@ -136,7 +162,7 @@ function App() {
     dispatch,
   ] = useReducer(reducer, initialState);
 
-  console.log(currStep, status, errorMsg);
+  console.log(selectedAddOns, currStep, status, errorMsg);
 
   return (
     <div className="app">
@@ -148,7 +174,7 @@ function App() {
           {currStep === 3 && status === "plan selected" && (
             <AddOns plan={plan} dispatch={dispatch} />
           )}
-          {currStep === 4 && status === "addOns selected" && (
+          {currStep === 4 && (
             <Summary
               selectedPlan={selectedPlan}
               selectedPlanName={selectedPlanName}

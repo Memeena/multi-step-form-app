@@ -4,7 +4,7 @@ export default function StepItem({ stepNo, stepName, dispatch }) {
   return (
     <li
       className={styles.stepItem}
-      onClick={() => dispatch({ type: "selectStep", payload: stepNo })}
+      // onClick={() => dispatch({ type: "selectStep", payload: stepNo })}
     >
       <div className={styles.stepNumber}>{stepNo}</div>
       <div className={styles.stepDetails}>
