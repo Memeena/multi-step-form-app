@@ -2,7 +2,7 @@ import styles from "./PlanDetails.module.css";
 import PlanDetailsList from "./PlanDetailsList";
 import Header from "../../Header/Header";
 
-export default function PlanDetails({ dispatch, plan }) {
+export default function PlanDetails({ dispatch, plan, selectedPlanName }) {
   // console.log(plan);
   function handlePlanChange() {
     // console.log("change plan clicked");
@@ -23,6 +23,7 @@ export default function PlanDetails({ dispatch, plan }) {
             planName={item.name}
             amount={item.price}
             dispatch={dispatch}
+            selectedPlanName={selectedPlanName}
           />
         ))}
       </ul>

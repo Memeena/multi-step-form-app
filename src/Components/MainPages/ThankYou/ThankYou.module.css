@@ -1,0 +1,26 @@
+.thankyou {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1.4rem;
+  width: 45rem;
+}
+
+.img {
+  width: 8rem;
+  height: 8rem;
+  margin-bottom: 1.8rem;
+}
+
+.heading {
+  font-size: 3.2rem;
+  color: var(--color-marine-blue);
+}
+
+.content {
+  color: var(--color-cool-gray);
+  font-size: 1.6rem;
+  text-align: center;
+  line-height: 2;
+}

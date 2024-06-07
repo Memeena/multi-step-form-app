@@ -15,6 +15,11 @@
   border-radius: 0.5rem;
   padding: 3rem 2.4rem;
   width: 45rem;
+  cursor: pointer;
+}
+
+.addOnsItem:hover {
+  border: 1px solid var(--color-purplish-blue) !important;
 }
 
 input[type="checkbox"] {

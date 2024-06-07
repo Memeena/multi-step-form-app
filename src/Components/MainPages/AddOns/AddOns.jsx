@@ -2,7 +2,7 @@ import Header from "../../Header/Header";
 import styles from "./AddOns.module.css";
 import AddOnsList from "./AddOnsList";
 
-export default function AddOns({ plan, dispatch }) {
+export default function AddOns({ plan, dispatch, selectedAddons }) {
   return (
     <div className={styles.addOns}>
       <Header
@@ -17,6 +17,7 @@ export default function AddOns({ plan, dispatch }) {
             price={item.price}
             key={item.name}
             dispatch={dispatch}
+            selectedAddons={selectedAddons}
           />
         ))}
       </ul>

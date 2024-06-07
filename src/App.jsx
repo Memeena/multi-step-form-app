@@ -4,11 +4,10 @@ import SideBar from "./Components/SideBar/SideBar";
 import AddOns from "./Components/MainPages/AddOns/AddOns";
 import "./index.css";
 import data from "./data/data.json";
-import { act, useReducer } from "react";
+import { useReducer } from "react";
 import Summary from "./Components/MainPages/Summary/Summary";
 import ThankYou from "./Components/MainPages/ThankYou/ThankYou";
 
-// console.log(data.data[0].plan);
 const initialState = {
   plan: data.data[0],
   selectedPlan: "",
@@ -42,13 +41,7 @@ function reducer(state, action) {
 
     case "selectedAddOns":
       console.log("inside selected addons", state.selectedAddOns);
-      // const x = ;
-      // const newArr = x
-      //   ? state.selectedAddOns.filter((i) => i.name === action.payload.name)
-      //   : [
-      //       ...state.selectedAddOns,
-      //       { name: action.payload.name, price: action.payload.price },
-      //     ];
+
       return {
         ...state,
         // status: "addOns selected",
@@ -67,33 +60,25 @@ function reducer(state, action) {
       // console.log("inside back step");
       console.log(state.status, state.currStep);
       return {
-        ...initialState,
+        ...state,
         currStep:
           state.currStep > 1 && state.currStep <= 4
             ? state.currStep--
             : state.currStep,
+        errorMsg: "",
       };
 
     case "nextStep":
       // console.log("inside next step");
       // console.log(state.status, state.currStep);
-      if (
-        state.currStep === 2 &&
-        !state.selectedPlanName &&
-        state.status !== "plan selected"
-      ) {
-        // console.log("inside error");
+      if (state.currStep === 2 && !state.selectedPlanName) {
         return {
           ...state,
           currStep: state.currStep,
           errorMsg: "Please select a plan",
           status: "error",
         };
-      } else if (
-        state.currStep === 3 &&
-        !state.selectedAddOns.length
-        // state.status !== "plan selected"
-      ) {
+      } else if (state.currStep === 3 && !state.selectedAddOns.length) {
         return {
           ...state,
           currStep: state.currStep,
@@ -105,30 +90,20 @@ function reducer(state, action) {
           ...state,
           currStep: state.currStep < 4 ? state.currStep++ : state.currStep,
           errorMsg: "",
-
-          // totalAmt:
-          //   state.currStep === 3
-          //     ? state.selectedPlanAmount +
-          //       state.selectedAddOns.price.reduce((acc, curr) => acc + curr, 0)
-          //     : state.totalAmt,
         };
-
-    // case "selectStep":
-    //   return {
-    //     ...state,
-    //     currStep: action.payload,
-    //   };
 
     case "changePlanName":
       return {
         ...state,
         currStep: 2,
-        selectedPlan: "",
-        selectedPlanName: "",
-        selectedPlanAmount: 0,
-        selectedAddOns: [],
       };
 
+    case "confirmStep":
+      return {
+        ...state,
+        currStep: state.currStep++,
+        status: "final",
+      };
     default:
       console.log("Unknown action");
   }
@@ -155,11 +130,27 @@ function App() {
   return (
     <div className="app">
       <div className="main">
-        <SideBar className="sideBar" dispatch={dispatch} currStep={currStep} />
+        <SideBar
+          className="sideBar"
+          dispatch={dispatch}
+          currStep={currStep <= 4 ? currStep : currStep - 1}
+        />
         <div className="mainPage">
           {currStep === 1 && <PersonalDetails />}
-          {currStep === 2 && <PlanDetails dispatch={dispatch} plan={plan} />}
-          {currStep === 3 && <AddOns plan={plan} dispatch={dispatch} />}
+          {currStep === 2 && (
+            <PlanDetails
+              dispatch={dispatch}
+              plan={plan}
+              selectedPlanName={selectedPlanName}
+            />
+          )}
+          {currStep === 3 && (
+            <AddOns
+              plan={plan}
+              dispatch={dispatch}
+              selectedAddons={selectedAddOns}
+            />
+          )}
           {currStep === 4 && (
             <Summary
               selectedPlan={selectedPlan}
@@ -169,7 +160,8 @@ function App() {
               dispatch={dispatch}
             />
           )}
-          {currStep > 4 && <ThankYou />}
+
+          {currStep === 5 && <ThankYou />}
 
           {errorMsg && <p>{errorMsg}</p>}
           <div className="button">
@@ -189,10 +181,12 @@ function App() {
                 Confirm
               </button>
             )}
-            {currStep !== 4 && (
+            {currStep < 4 && (
               <button
                 className="btn-next"
-                onClick={() => dispatch({ type: "nextStep" })}
+                onClick={() => {
+                  dispatch({ type: "nextStep" });
+                }}
               >
                 Next Step
               </button>
