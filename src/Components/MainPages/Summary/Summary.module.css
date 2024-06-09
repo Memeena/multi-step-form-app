@@ -55,6 +55,10 @@
   /* text-underline-position: below; */
   cursor: pointer;
 }
+
+.btnChange:hover {
+  color: var(--color-purplish-blue);
+}
 .addOn,
 .totalAmt {
   display: flex;

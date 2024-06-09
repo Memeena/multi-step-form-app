@@ -3,15 +3,7 @@ import "../../../index.css";
 import Header from "../../Header/Header";
 import { useState } from "react";
 
-export default function PersonalDetails() {
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [contact, setContact] = useState(0);
-
-  function handleChange(e) {
-    console.log(e.target.value);
-    setName(e.target.value);
-  }
+export default function PersonalDetails({ dispatch }) {
   return (
     <div className={styles.personalDetails}>
       <Header
@@ -25,21 +17,25 @@ export default function PersonalDetails() {
         <div className={`${styles.det} ${"p-medium"}`}>
           <label htmlFor="name" className={styles.detHeading}>
             Name
+            {/* {error && <p className={styles.error}>{error}</p>} */}
           </label>
-          {!name && <p>This field is required!</p>}
+
           <input
             id="name"
             className={styles.input}
             type="text"
             placeholder="e.g. Stephen King"
-            value={name}
-            onChange={(e) => handleChange(e)}
+            // value={name}
+            onChange={(e) =>
+              dispatch({ type: "changeName", payload: e.target.value })
+            }
           ></input>
         </div>
 
         <div className={`${styles.det} ${"p-medium"}`}>
           <label htmlFor="email" className={styles.detHeading}>
             Email address
+            {/* {error && <p className={styles.error}>{error}</p>} */}
           </label>
 
           <input
@@ -47,7 +43,10 @@ export default function PersonalDetails() {
             className={styles.input}
             type="email"
             placeholder="e.g. stephenking@lorem.com"
-            value={email}
+            // value={email}
+            onChange={(e) =>
+              dispatch({ type: "changeEmail", payload: e.target.value })
+            }
           ></input>
         </div>
 
@@ -61,7 +60,10 @@ export default function PersonalDetails() {
             className={styles.input}
             type="text"
             placeholder="e.g. +1 234 567 890"
-            value={contact}
+            // value={contact}
+            onChange={(e) =>
+              dispatch({ type: "changeContact", payload: e.target.value })
+            }
           ></input>
         </div>
       </div>

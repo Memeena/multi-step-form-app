@@ -30,6 +30,13 @@
 
 .detHeading {
   color: var(--color-marine-blue);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.error {
+  color: var(--color-strawberry-red);
 }
 
 .input {

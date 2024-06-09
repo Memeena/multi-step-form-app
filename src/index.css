@@ -80,6 +80,7 @@ html {
   display: flex;
   flex-direction: column;
   gap: 9rem;
+  position: relative;
 }
 
 .button {
@@ -120,4 +121,11 @@ html {
 
 :global(.active) {
   border: 1px solid var(--color-purplish-blue);
+}
+
+.error {
+  color: var(--color-strawberry-red);
+  font-size: 1.2rem;
+  position: absolute;
+  bottom: 8rem;
 }
