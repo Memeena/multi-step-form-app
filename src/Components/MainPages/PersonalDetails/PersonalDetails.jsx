@@ -14,7 +14,6 @@ export default function PersonalDetails({ dispatch }) {
 
   function handleChange(e) {
     const { name, value } = e.target;
-    // console.log(e);
     setFormData({
       ...formData,
       [name]: value,
@@ -27,11 +26,7 @@ export default function PersonalDetails({ dispatch }) {
     setErrors(newErrors);
 
     if (Object.keys(newErrors).length === 0) {
-      // Form submission logic here
       dispatch({ type: "nextStep" });
-    } else {
-      console.log(`Form submission failed
-             due to validation errors.`);
     }
   }
 
@@ -82,6 +77,11 @@ export default function PersonalDetails({ dispatch }) {
             placeholder="e.g. Stephen King"
             // value={name}
             onChange={handleChange}
+            style={{
+              border: errors.username
+                ? "1px solid var(--color-strawberry-red)"
+                : "1px solid var(--color-cool-gray)",
+            }}
           ></input>
         </div>
 
@@ -101,6 +101,11 @@ export default function PersonalDetails({ dispatch }) {
             placeholder="e.g. stephenking@lorem.com"
             value={formData.email}
             onChange={handleChange}
+            style={{
+              border: errors.email
+                ? "1px solid var(--color-strawberry-red)"
+                : "1px solid var(--color-cool-gray)",
+            }}
           ></input>
         </div>
 
@@ -120,6 +125,11 @@ export default function PersonalDetails({ dispatch }) {
             placeholder="e.g. +1 234 567 890"
             value={formData.contact}
             onChange={handleChange}
+            style={{
+              border: errors.contact
+                ? "1px solid var(--color-strawberry-red)"
+                : "1px solid var(--color-cool-gray)",
+            }}
           ></input>
         </div>
         <button className={`${"btn-next"} ${styles.btnNext}`} type="submit">
