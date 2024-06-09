@@ -57,3 +57,12 @@
   font-weight: 500;
   color: var(--color-cool-gray);
 }
+
+.errorMessage {
+  font-size: 1.4rem;
+  color: var(--color-strawberry-red);
+}
+
+.btnNext {
+  margin-top: 4rem;
+}

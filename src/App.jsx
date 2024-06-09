@@ -4,7 +4,7 @@ import SideBar from "./Components/SideBar/SideBar";
 import AddOns from "./Components/MainPages/AddOns/AddOns";
 import "./index.css";
 import data from "./data/data.json";
-import { act, useReducer, useState } from "react";
+import { useReducer } from "react";
 import Summary from "./Components/MainPages/Summary/Summary";
 import ThankYou from "./Components/MainPages/ThankYou/ThankYou";
 
@@ -15,8 +15,6 @@ const initialState = {
   selectedPlanAmount: 0,
   selectedAddOns: [],
   currStep: 1,
-  totalAmt: 0,
-  status: "ready", //"plan selected"/"addOns selected"/"finish",
   error: {
     err: false,
     msg: "",
@@ -39,7 +37,6 @@ function reducer(state, action) {
         selectedPlan: state.plan.plan,
         selectedPlanName: action.payload.planName,
         selectedPlanAmount: action.payload.amount,
-        status: "plan selected",
         error: { err: false, msg: "" },
         // errorMsg: "",
       };
@@ -49,7 +46,6 @@ function reducer(state, action) {
 
       return {
         ...state,
-        // status: "addOns selected",
         error: { err: false, msg: "" },
         selectedAddOns: state.selectedAddOns.some(
           (i) => i.name === action.payload.name
@@ -62,8 +58,6 @@ function reducer(state, action) {
       };
 
     case "backStep":
-      console.log("inside back step");
-      console.log(state.currStep);
       return {
         ...state,
         error: { err: false, msg: "" },
@@ -76,33 +70,10 @@ function reducer(state, action) {
     case "Error":
       return { ...state, error: { err: true, msg: action.payload } };
     case "nextStep":
-      console.log("inside next step");
-
-      // if (
-      //   state.currStep === 2 &&
-      //   !state.selectedPlanName
-      //   // state.status !== "ready"
-      // ) {
-      //   console.log(state.status, state.currStep, state.selectedPlanName);
-      //   return {
-      //     ...state,
-      //     currStep: state.currStep,
-      //     errorMsg: "Please select a plan",
-      //     status: "error",
-      //   };
-      // } else if (state.currStep === 3 && !state.selectedAddOns.length) {
-      //   return {
-      //     ...state,
-      //     currStep: state.currStep,
-      //     errorMsg: "Please select Addons..",
-      //     status: "error",
-      //   };
-      // } else
       return {
         ...state,
         currStep: state.currStep < 4 ? state.currStep++ : state.currStep,
         error: state.selectedPlanName ? { err: false, msg: "" } : state.error,
-        // errorMsg: "",
       };
 
     case "changePlanName":
@@ -115,7 +86,6 @@ function reducer(state, action) {
       return {
         ...state,
         currStep: state.currStep++,
-        status: "final",
       };
     default:
       console.log("Unknown action");
@@ -130,10 +100,7 @@ function App() {
       selectedPlanAmount,
       selectedAddOns,
       currStep,
-      totalAmt,
-      status,
       error,
-      // const [error, setError] = useState({ error: false, message: "" });
     },
     dispatch,
   ] = useReducer(reducer, initialState);
@@ -204,7 +171,7 @@ function App() {
                 Confirm
               </button>
             )}
-            {currStep < 4 && (
+            {currStep > 1 && currStep < 4 && (
               <button className="btn-next" onClick={handleNext}>
                 Next Step
               </button>
