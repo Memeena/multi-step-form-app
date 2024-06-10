@@ -11,7 +11,7 @@ export default function Summary({
   const totalAmt =
     selectedPlanAmount +
     selectedAddOns.reduce((acc, curr) => acc + curr.price, 0);
-  console.log(totalAmt, selectedPlan);
+
   return (
     <div className={styles.summary}>
       <Header

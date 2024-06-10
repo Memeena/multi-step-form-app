@@ -11,15 +11,9 @@ export default function AddOnsList({
   const [checked, setChecked] = useState(false);
 
   function handleChange(e) {
-    console.log("checkbox clicked");
-    console.log(name, price, e);
     setChecked(e.target.checked);
-    // dispatch({ type: "selectedPlan", payload: { planName, amount } });
-    // dispatch({ type: "selectedAddOns" });
-
     dispatch({ type: "selectedAddOns", payload: { name, price } });
   }
-  console.log(selectedAddons);
 
   return (
     <li
@@ -37,8 +31,6 @@ export default function AddOnsList({
         onChange={handleChange}
         id="checkbox"
         checked={selectedAddons.some((i) => i.name === name)}
-
-        // value={checked}
       ></input>
       <div className={styles.addOnsDetail}>
         <label className={styles.name} htmlFor="checkbox">

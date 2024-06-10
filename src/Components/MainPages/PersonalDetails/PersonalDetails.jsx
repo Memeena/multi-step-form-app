@@ -5,7 +5,7 @@ import { useState } from "react";
 
 export default function PersonalDetails({ dispatch }) {
   const [formData, setFormData] = useState({
-    userName: "",
+    username: "",
     email: "",
     contact: "",
   });
@@ -49,7 +49,6 @@ export default function PersonalDetails({ dispatch }) {
     return errors;
   };
 
-  // console.log(errors);
   return (
     <div className={styles.personalDetails}>
       <Header
@@ -75,7 +74,6 @@ export default function PersonalDetails({ dispatch }) {
             type="text"
             value={formData.username}
             placeholder="e.g. Stephen King"
-            // value={name}
             onChange={handleChange}
             style={{
               border: errors.username
