@@ -19,6 +19,7 @@
   --color-alabaster: hsl(231, 100%, 99%);
   --color-white: hsl(0, 0%, 100%);
   --color-border: hsl(231, 23%, 87%);
+  --color-mobile-background: hsl(218, 100%, 97%);
 }
 
 html {
@@ -49,18 +50,10 @@ html {
   font-size: 3.4rem;
 }
 .app {
-  /* width: 94rem; */
-  /* margin: 10rem 42rem; */
-  /* margin: 10rem; */
-  /* padding: 0 10r; */
-  /* grid-template-columns: max-content 1fr; */
-  /* grid-template-rows: 1fr max-content; */
-
-  /* gap: 5rem; */
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 100vh;
+  /* height: 100vh; */
   background-color: var(--color-border);
 }
 
@@ -128,4 +121,28 @@ html {
   font-size: 1.2rem;
   position: absolute;
   bottom: 8rem;
+}
+
+@media screen and (max-width: 23.5em) {
+  .app {
+    height: 100vh;
+    justify-content: start;
+    align-items: start;
+    background-color: var(--color-white);
+  }
+  .main {
+    flex-direction: column;
+    background-color: var(--color-mobile-background);
+
+    padding: 0;
+    border-radius: 0;
+  }
+
+  .mainPage {
+    margin: 1.6rem;
+    padding: 0;
+    background-color: var(--color-white);
+    margin-top: -5rem;
+    gap: 0;
+  }
 }

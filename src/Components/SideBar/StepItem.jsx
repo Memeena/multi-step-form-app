@@ -1,6 +1,13 @@
 import styles from "./StepItem.module.css";
 
-export default function StepItem({ stepNo, stepName, dispatch, currStep }) {
+export default function StepItem({
+  stepNo,
+  stepName,
+  dispatch,
+  currStep,
+  width,
+}) {
+  console.log(width);
   return (
     <li className={styles.stepItem}>
       <div
@@ -16,10 +23,12 @@ export default function StepItem({ stepNo, stepName, dispatch, currStep }) {
       >
         {stepNo}
       </div>
-      <div className={styles.stepDetails}>
-        <p className={styles.stepNo}>Step {stepNo}</p>
-        <p className={styles.stepName}>{stepName}</p>
-      </div>
+      {width > 700 && (
+        <div className={styles.stepDetails}>
+          <p className={styles.stepNo}>Step {stepNo}</p>
+          <p className={styles.stepName}>{stepName}</p>
+        </div>
+      )}
     </li>
   );
 }

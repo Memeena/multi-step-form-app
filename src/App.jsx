@@ -5,7 +5,7 @@ import PlanDetails from "./Components/MainPages/PlanDetails/PlanDetails";
 import SideBar from "./Components/SideBar/SideBar";
 import AddOns from "./Components/MainPages/AddOns/AddOns";
 import "./index.css";
-import { useReducer } from "react";
+import { useEffect, useReducer, useState } from "react";
 import Summary from "./Components/MainPages/Summary/Summary";
 import ThankYou from "./Components/MainPages/ThankYou/ThankYou";
 
@@ -102,6 +102,20 @@ function App() {
     dispatch,
   ] = useReducer(reducer, initialState);
 
+  const [width, setWidth] = useState(0); //To update the width state based on the device
+
+  function updateWidth() {
+    const width = window.innerWidth;
+    setWidth(width);
+  }
+
+  useEffect(() => {
+    updateWidth();
+    window.addEventListener("resize", updateWidth);
+
+    return () => window.removeEventListener("resize", updateWidth);
+  }, []);
+
   function handleNext() {
     if (currStep === 2 && !selectedPlanName) {
       dispatch({ type: "Error", payload: "Please select a plan" });
@@ -118,6 +132,7 @@ function App() {
           className="sideBar"
           dispatch={dispatch}
           currStep={currStep <= 4 ? currStep : currStep - 1}
+          width={width}
         />
         <div className="mainPage">
           {currStep === 1 && <PersonalDetails dispatch={dispatch} />}

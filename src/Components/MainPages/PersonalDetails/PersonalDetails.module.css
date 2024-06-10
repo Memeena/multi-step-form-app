@@ -73,3 +73,20 @@
   /* bottom: 2rem; */
   /* margin-top: 3rem; */
 }
+
+@media screen and (max-width: 23.5em) {
+  .personalDetails {
+    width: 100%;
+    padding: 2.4rem;
+    border-radius: 2rem;
+  }
+
+  .details {
+    position: relative;
+  }
+
+  .btnNext {
+    position: absolute;
+    bottom: -10rem;
+  }
+}
