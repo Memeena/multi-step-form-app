@@ -156,7 +156,7 @@ function App() {
               plan={plan}
               dispatch={dispatch}
               selectedAddons={selectedAddOns}
-              selectedPlan={selectedPlan}
+              // selectedPlan={selectedPlan}
             />
           )}
           {currStep === 4 && (
