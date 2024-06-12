@@ -7,6 +7,7 @@ export default function AddOnsList({
   price,
   dispatch,
   selectedAddons,
+  plan,
 }) {
   const [checked, setChecked] = useState(false);
 
@@ -38,7 +39,9 @@ export default function AddOnsList({
         </label>
         <p className={styles.subName}>{subName}</p>
       </div>
-      <p className={styles.price}>+${price}/mo</p>
+      <p className={styles.price}>
+        +${price}/{plan === "Yearly" ? "yr" : "mo"}
+      </p>
     </li>
   );
 }

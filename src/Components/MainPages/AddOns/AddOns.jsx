@@ -18,6 +18,7 @@ export default function AddOns({ plan, dispatch, selectedAddons }) {
             key={item.name}
             dispatch={dispatch}
             selectedAddons={selectedAddons}
+            plan={plan.plan}
           />
         ))}
       </ul>
