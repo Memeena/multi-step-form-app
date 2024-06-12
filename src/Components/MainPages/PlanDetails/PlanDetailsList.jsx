@@ -6,7 +6,9 @@ export default function PlanDetailsList({
   amount,
   dispatch,
   selectedPlanName,
+  plan,
 }) {
+  console.log(plan);
   function handleClick() {
     dispatch({ type: "selectedPlan", payload: { planName, amount } });
   }
@@ -24,7 +26,12 @@ export default function PlanDetailsList({
       <img className={styles.planImg} src={img} alt="plan" />
       <div className={styles.planDetail}>
         <h3 className={styles.planName}>{planName}</h3>
-        <p className={styles.amount}>${amount}/mo</p>
+        <p className={styles.amount}>
+          ${amount}/{plan === "Yearly" ? "yr" : "mo"}
+        </p>
+        {plan === "Yearly" && (
+          <p className={styles.freeMonths}>2 months free</p>
+        )}
       </div>
     </li>
   );

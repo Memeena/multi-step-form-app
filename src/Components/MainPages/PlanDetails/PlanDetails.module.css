@@ -32,7 +32,8 @@
   border: 1px solid var(--color-border);
   border-radius: 0.5rem;
   width: 13.8rem;
-  height: 16rem;
+  /* height: 16rem; */
+  gap: 4rem;
   justify-content: space-between;
   cursor: pointer;
   /* align-items: center; */
@@ -50,7 +51,7 @@
 .planName {
   font-size: 1.6rem;
   color: var(--color-marine-blue);
-  line-height: 2;
+  /* line-height: 2; */
 }
 
 .amount {
@@ -94,3 +95,18 @@
 .planSelect[data-mode="Yearly"] {
   left: 2.2rem;
 }
+.planDetail {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.freeMonths {
+  font-size: 1.2rem;
+  color: var(--color-marine-blue);
+}
+
+/* .planDetail {
+  display: flex;
+  flex-direction: column;
+} */

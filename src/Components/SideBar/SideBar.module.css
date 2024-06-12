@@ -24,5 +24,6 @@
     /* align-items: center; */
     height: 17.2rem;
     gap: 1.6rem;
+    border-radius: 0;
   }
 }

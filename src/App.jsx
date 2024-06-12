@@ -141,6 +141,7 @@ function App() {
               dispatch={dispatch}
               plan={plan}
               selectedPlanName={selectedPlanName}
+              selectedPlan={selectedPlan}
             />
           )}
           {currStep === 3 && (
