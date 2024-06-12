@@ -7,7 +7,7 @@ export default function StepItem({
   currStep,
   width,
 }) {
-  console.log(width);
+  // console.log(width);
   return (
     <li className={styles.stepItem}>
       <div

@@ -28,15 +28,21 @@ function reducer(state, action) {
       return {
         ...state,
         plan: state.plan.plan === "Monthly" ? data.data[1] : data.data[0],
+        selectedPlan: "",
+        selectedPlanName: "",
+        selectedPlanAmount: 0,
+        selectedAddons: [],
       };
 
     case "selectedPlan":
+      console.log(state.selectedAddOns.length);
       return {
         ...state,
         selectedPlan: state.plan.plan,
         selectedPlanName: action.payload.planName,
         selectedPlanAmount: action.payload.amount,
         error: { err: false, msg: "" },
+        selectedAddOns: [],
       };
 
     case "selectedAddOns":
@@ -125,6 +131,7 @@ function App() {
     } else dispatch({ type: "nextStep" });
   }
 
+  console.log("selectedAddons:", selectedAddOns);
   return (
     <div className="app">
       <div className="main">
@@ -149,6 +156,7 @@ function App() {
               plan={plan}
               dispatch={dispatch}
               selectedAddons={selectedAddOns}
+              selectedPlan={selectedPlan}
             />
           )}
           {currStep === 4 && (

@@ -8,7 +8,7 @@ export default function PlanDetailsList({
   selectedPlanName,
   plan,
 }) {
-  console.log(plan);
+  // console.log(plan);
   function handleClick() {
     dispatch({ type: "selectedPlan", payload: { planName, amount } });
   }

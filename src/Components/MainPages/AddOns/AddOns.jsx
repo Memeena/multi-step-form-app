@@ -3,6 +3,7 @@ import styles from "./AddOns.module.css";
 import AddOnsList from "./AddOnsList";
 
 export default function AddOns({ plan, dispatch, selectedAddons }) {
+  console.log(selectedAddons);
   return (
     <div className={styles.addOns}>
       <Header
