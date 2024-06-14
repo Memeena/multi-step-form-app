@@ -78,3 +78,15 @@
   color: var(--color-purplish-blue);
   font-weight: 700;
 }
+
+@media screen and (max-width: 23.5em) {
+  .summary {
+    padding: 2.4rem;
+  }
+  .summaryMain {
+    width: 100%;
+  }
+  .details {
+    padding: 1.6rem;
+  }
+}

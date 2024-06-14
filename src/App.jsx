@@ -141,7 +141,7 @@ function App() {
           currStep={currStep <= 4 ? currStep : currStep - 1}
           width={width}
         />
-        <div className="mainPage">
+        <div className="mainPage" data-mode={currStep === 5 ? "thank-you" : ""}>
           {currStep === 1 && <PersonalDetails dispatch={dispatch} />}
           {currStep === 2 && (
             <PlanDetails
@@ -172,29 +172,29 @@ function App() {
           {currStep === 5 && <ThankYou />}
 
           {error.err && <p className="error">{error.msg}</p>}
-          <div className="button">
-            {currStep > 1 && currStep <= 4 && (
-              <button
-                className="btn-back"
-                onClick={() => dispatch({ type: "backStep" })}
-              >
-                Go Back
-              </button>
-            )}
-            {currStep === 4 && (
-              <button
-                className="btn-confirm"
-                onClick={() => dispatch({ type: "confirmStep" })}
-              >
-                Confirm
-              </button>
-            )}
-            {currStep > 1 && currStep < 4 && (
-              <button className="btn-next" onClick={handleNext}>
-                Next Step
-              </button>
-            )}
-          </div>
+        </div>
+        <div className="button">
+          {currStep > 1 && currStep <= 4 && (
+            <button
+              className="btn-back"
+              onClick={() => dispatch({ type: "backStep" })}
+            >
+              Go Back
+            </button>
+          )}
+          {currStep === 4 && (
+            <button
+              className="btn-confirm"
+              onClick={() => dispatch({ type: "confirmStep" })}
+            >
+              Confirm
+            </button>
+          )}
+          {currStep > 1 && currStep < 4 && (
+            <button className="btn-next" onClick={handleNext}>
+              Next Step
+            </button>
+          )}
         </div>
       </div>
     </div>

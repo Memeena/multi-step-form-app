@@ -53,3 +53,22 @@ input[type="checkbox"] {
 .price {
   color: var(--color-purplish-blue);
 }
+
+@media screen and (max-width: 23.5em) {
+  .addOns {
+    padding: 2.4rem;
+  }
+  .addOnsItem {
+    width: 100%;
+    gap: 1.6rem;
+    padding: 2.1rem 1.6rem;
+  }
+  .name {
+    font-size: 1.4rem;
+  }
+
+  .subName,
+  .price {
+    font-size: 1.2rem;
+  }
+}

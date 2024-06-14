@@ -77,16 +77,19 @@
 @media screen and (max-width: 23.5em) {
   .personalDetails {
     width: 100%;
-    padding: 2.4rem;
+    padding: 4.2rem 2.4rem;
     border-radius: 2rem;
   }
 
   .details {
     position: relative;
+    padding-top: 1.2rem;
+    /* height: 42.3rem; */
   }
 
   .btnNext {
     position: absolute;
-    bottom: -10rem;
+    bottom: -25rem;
+    right: 0;
   }
 }
