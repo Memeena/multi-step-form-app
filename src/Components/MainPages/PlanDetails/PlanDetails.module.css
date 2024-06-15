@@ -85,7 +85,7 @@
   color: var(--color-marine-blue);
 }
 
-@media screen and (max-width: 23.5em) {
+@media screen and (max-width: 28.5em) {
   .planDetails {
     padding: 3.8rem 2.4rem;
   }

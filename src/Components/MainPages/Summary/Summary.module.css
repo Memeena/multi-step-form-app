@@ -24,7 +24,6 @@
 .selectedPlanName {
   display: flex;
   flex-direction: column;
-  /* justify-content: start; */
   gap: 0.5rem;
 }
 
@@ -48,11 +47,7 @@
   font-family: inherit;
   background: none;
   text-align: left;
-
-  /* padding-bottom: 1rem; */
   text-decoration: underline;
-
-  /* text-underline-position: below; */
   cursor: pointer;
 }
 
@@ -79,7 +74,7 @@
   font-weight: 700;
 }
 
-@media screen and (max-width: 23.5em) {
+@media screen and (max-width: 28.5em) {
   .summary {
     padding: 2.4rem;
   }

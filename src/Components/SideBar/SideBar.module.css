@@ -11,19 +11,15 @@
   height: 56.8rem;
   grid-row: 1/-1;
   grid-column: 1/2;
-
-  /* width: 0%; */
 }
 
-@media screen and (max-width: 37em) {
+@media screen and (max-width: 28.5em) {
   .sideBar {
     background-image: url("../../../public/assets/images/bg-sidebar-mobile.svg");
     flex-direction: row;
-    /* background-size: contain; */
     padding-top: 0;
     width: 100vw;
     justify-content: center;
-    /* align-items: center; */
     height: 17.2rem;
     gap: 1.6rem;
     border-radius: 0;
