@@ -171,7 +171,7 @@ function App() {
 
           {currStep === 5 && <ThankYou />}
 
-          {error.err && <p className="error">{error.msg}</p>}
+          {error.err && <p className="error p-small">{error.msg}</p>}
         </div>
         <div className="button">
           {currStep > 1 && currStep <= 4 && (

@@ -30,7 +30,7 @@ export default function PlanDetails({ dispatch, plan, selectedPlanName }) {
         ))}
       </ul>
 
-      <div className={styles.plan}>
+      <div className={`${styles.plan} p-medium`}>
         <p>Monthly</p>
         <div className={styles.planbtn} onClick={handlePlanChange}>
           <div className={styles.planSelect} data-mode={plan.plan}></div>

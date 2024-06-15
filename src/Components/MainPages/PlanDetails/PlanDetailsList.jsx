@@ -1,4 +1,5 @@
 import styles from "./PlanDetails.module.css";
+import "../../../index.css";
 
 export default function PlanDetailsList({
   img,
@@ -25,12 +26,12 @@ export default function PlanDetailsList({
     >
       <img className={styles.planImg} src={img} alt="plan" />
       <div className={styles.planDetail}>
-        <h3 className={styles.planName}>{planName}</h3>
-        <p className={styles.amount}>
+        <h3 className={`${styles.planName} p-large`}>{planName}</h3>
+        <p className={`${styles.amount} p-medium`}>
           ${amount}/{plan === "Yearly" ? "yr" : "mo"}
         </p>
         {plan === "Yearly" && (
-          <p className={styles.freeMonths}>2 months free</p>
+          <p className={`${styles.freeMonths} p-small`}>2 months free</p>
         )}
       </div>
     </li>

@@ -134,7 +134,7 @@ html {
 
 .error {
   color: var(--color-strawberry-red);
-  font-size: 1.2rem;
+  /* font-size: 1.2rem; */
   position: absolute;
   bottom: 5rem;
 }

@@ -63,7 +63,9 @@ export default function PersonalDetails({ dispatch }) {
           <label htmlFor="name" className={styles.detHeading}>
             Name
             {errors.username && (
-              <span className={styles.errorMessage}>{errors.username}</span>
+              <span className={`${styles.errorMessage} p-small`}>
+                {errors.username}
+              </span>
             )}
           </label>
 
@@ -87,7 +89,9 @@ export default function PersonalDetails({ dispatch }) {
           <label htmlFor="email" className={styles.detHeading}>
             Email address
             {errors.email && (
-              <span className={styles.errorMessage}>{errors.email}</span>
+              <span className={`${styles.errorMessage} p-small`}>
+                {errors.email}
+              </span>
             )}
           </label>
 
@@ -111,7 +115,9 @@ export default function PersonalDetails({ dispatch }) {
           <label htmlFor="phoneNo" className={styles.detHeading}>
             Phone Number
             {errors.contact && (
-              <span className={styles.errorMessage}>{errors.contact}</span>
+              <span className={`${styles.errorMessage} p-small`}>
+                {errors.contact}
+              </span>
             )}
           </label>
 
