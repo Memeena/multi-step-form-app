@@ -24,7 +24,6 @@ export default function PlanDetails({ dispatch, plan, selectedPlanName }) {
             amount={item.price}
             dispatch={dispatch}
             selectedPlanName={selectedPlanName}
-            // selectedPlan={selectedPlan}
             plan={plan.plan}
           />
         ))}

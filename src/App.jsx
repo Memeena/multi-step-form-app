@@ -197,6 +197,9 @@ function App() {
           )}
         </div>
       </div>
+      {/* <p className="footer">
+        Completed the frontend mentor challenge by Meenakshi
+      </p> */}
     </div>
   );
 }
