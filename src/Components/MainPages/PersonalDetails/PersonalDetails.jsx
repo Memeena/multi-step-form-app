@@ -21,6 +21,7 @@ export default function PersonalDetails({ dispatch }) {
   }
 
   function handleSubmit(e) {
+    console.log('submit clicked');
     e.preventDefault();
     const newErrors = validateForm(formData);
     setErrors(newErrors);
