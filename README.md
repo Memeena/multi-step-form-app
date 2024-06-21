@@ -70,6 +70,8 @@ My approach towards this challenge:
   6. When the user clicks the Change Plan button the Summary page, it goes to the Plan Details page and updates any changes made by the user.
   7. When the user clicks the confirm button in the Summary Page, it takes it to the next and final step of Thank You page.
 - Minor changes like changing the price fields from '/mo' to '/yr' and viceversa are taken care of as per user requirements.
+- Errors from the form are handled in the Personal Details page and displayed in the UI.
+- Errors when user selects no plan / addOns are handled by state variable and displayed in the UI if any.
 - The total amount of the plan is calculated using array 'reduce' method.
 
 ```js
