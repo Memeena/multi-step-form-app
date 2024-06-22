@@ -35,7 +35,7 @@ function reducer(state, action) {
       };
 
     case "selectedPlan":
-      console.log(state.selectedAddOns.length);
+      // console.log(state.selectedAddOns.length);
       return {
         ...state,
         selectedPlan: state.plan.plan,
@@ -131,7 +131,7 @@ function App() {
     } else dispatch({ type: "nextStep" });
   }
 
-  console.log("selectedAddons:", selectedAddOns);
+  // console.log("selectedAddons:", selectedAddOns);
   return (
     <div className="app">
       <div className="main">
